@@ -1,0 +1,30 @@
+create database employeeproject
+use employeeproject
+
+create table employee
+(
+empId int constraint pk_employee primary key,
+name varchar(10),
+dob varchar(10),
+Address varchar(20),
+ Qualification varchar(20),
+emailid varchar(15),
+contactnumber varchar(10),
+ Department varchar(20),
+Supervicer varchar(20),
+skillid int constraint fk_skill Foreign KEY references skill(skillid) 
+ON DELETE SET NULL);
+
+create table skill
+(
+skillid int constraint pk_skill primary key,
+skillname varchar(20),
+qualification varchar(20),
+experince varchar(20));
+
+
+select*from employee
+select*from skill
+
+drop table employee
+drop table skill
