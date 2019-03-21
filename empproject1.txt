@@ -25,17 +25,16 @@ Supervicer varchar(20),
 create table skill
 (
 id int constraint pk_skill primary key,
-skillname varchar(20),
+skillname varchar(20) not null,
 qualification varchar(20),
 experince varchar(20),
-constraint fk_employee Foreign KEY references id(id) 
-ON DELETE SET NULL);
+empid int constraint fk_skill Foreign KEY references employee(empId));
 
 
- INSERT INTO skill VALUES(1,'ACCOUNT');
-  INSERT INTO skill VALUES(2,'finance');
-   INSERT INTO skill VALUEs(3,'sales');
-   INSERT INTO skill VALUES(4,'marketing');
+ INSERT INTO skill VALUES(1,'draw','accountant','2years',111);
+  INSERT INTO skill VALUES(2,'paint','financer','5years',112);
+   INSERT INTO skill VALUEs(3,'selling','sales','9-10years',113);
+   INSERT INTO skill VALUES(4,'talking','marketing','4years',114);
 
 
 select*from employee
