@@ -1,5 +1,6 @@
 create database employeeproject
 use employeeproject
+drop table employee
 
 create table userinfo
 (
@@ -36,17 +37,24 @@ experince int,
 alter table skill
 add experienceyears int
 
+alter table skill
+drop column experince
+
   INSERT INTO skill VALUES(111,1,'Java,c++,','c1','2');
   INSERT INTO skill VALUES(112,2,'c++,python.Java','c2','5');
   INSERT INTO skill VALUEs(113,3,'Java','c3','9');
   INSERT INTO skill VALUES(114,4,'python,java','c4','10');
   INSERT INTO skill VALUES(115,5,'c++,java,python','c5','10');
   
-  update skill set experienceyears='2' where empid=111
-   update skill set experienceyears='5' where empid=112
-   update skill set experienceyears='9' where empid=113
-   update skill set experienceyears='10' where empid=114
-   update skill set experienceyears='10' where empid=11
+  update skill set experienceyears ='2' where empid=111
+   update skill set experienceyears ='5' where empid=112
+   update skill set experienceyears ='9' where empid=113
+   update skill set experienceyears ='10' where empid=114
+   update skill set experienceyears ='10' where empid=115
+
+   update skill set  skillname='c++,python,Java' where empid=112
+
+
  create table address
  (
  empid int constraint fk_address Foreign KEY references userinfo(empId),
@@ -82,25 +90,49 @@ where empid=114
 
 
 
-
+select*from userinfo
 select *from skill 
-where skillname like '%Java%'
+select *from  userinfo where empid IN 
+(SELECT empid from skill  where skillname like '%Java%')
 
 
+select*from userinfo
 select *from skill 
-where skillname = 'Java,c++,angular'
+select *from  userinfo where empid IN 
+(SELECT empid from skill  where skillname IN('Java','c++','python'))
+
 
 
 
 select*from userinfo
-where Address='bangalore'
+select*from address
+select *from  userinfo where empid IN 
+(SELECT empid from address  where city='bangalore')
 
+
+select*from userinfo
 select*from skill
-where experienceyears>3
+select *from  userinfo where empid IN 
+(SELECT empid from skill  where experienceyears>3)
 
 select*from userinfo
 where Authentication='Approved'
 
+select*from userinfo
+select*from skill
+select *from  userinfo where empid IN 
+(SELECT empid from skill  where max(experienceyears))
+
+
+
+
+
+
+
+
+
+
 select*from skill
 select experienceyears=max(experienceyears) from skill
+
 
